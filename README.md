@@ -1,267 +1,233 @@
-# Eventra
+# Eventra - Next.js 16 Frontend Application
 
-Modern event and hackathon platform for communities, organizers, and contributors.
+[![Next.js](https://img.shields.io/badge/Frontend-Next.js%2016-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
+[![Spring Boot](https://img.shields.io/badge/Backend-Spring%20Boot%203-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Theme](https://img.shields.io/badge/Theme-Forest%20Mint%20(%23f4fbf7)-00b887?style=for-the-badge)](#design-system--theme)
+[![API Status](https://img.shields.io/badge/API-Azure%20Cloud%20Live-0089D6?style=for-the-badge&logo=microsoftazure&logoColor=white)](https://eventra-backend-springboot-eybhdvaubxcua7ha.centralindia-01.azurewebsites.net/swagger-ui/index.html)
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-[![React](https://img.shields.io/badge/React-19.x-blue.svg)](https://react.dev/)
-[![Vite](https://img.shields.io/badge/Vite-8.x-646CFF.svg)](https://vitejs.dev/)
-
----
-
-> [!IMPORTANT]
-> ## Project Status Notice
->
-> Due to time constraints and other commitments, **I ([@SandeepVashishtha](https://github.com/SandeepVashishtha)) will no longer be actively contributing to or managing this project** going forward. I sincerely apologize for any inconvenience this may cause to contributors and users.
->
-> **The project will NOT be archived** - it remains open and active, especially for **GSSoC 2026** participants and the broader open-source community.
->
-> There are mentors currently involved, and the project can continue to grow with community support. However, **we are looking for 2-3 dedicated volunteers to step up as maintainers** to help review PRs, triage issues, and guide contributors.
->
-> ### Interested in becoming a maintainer?
->
-> If you are passionate about this project and willing to take on a maintainer role, please reach out by:
-> - Opening an issue titled **"Maintainer Volunteer - [Your Name]"**
-> - Or contacting via the existing community channels
->
-> Your contributions and leadership would mean a lot to this project and the community around it. 🙏
+**Eventra** is the Next.js 16 web application interface for the Eventra Platform, seamlessly connected with a Spring Boot 3 REST API backend deployed on Azure Cloud. Built for developers, technical communities, and university chapters to discover tech workshops, join global hackathons, and showcase open-source projects.
 
 ---
-
-## Overview
-
-Eventra is an open-source frontend application built with React and Vite. It supports event discovery, registration, dashboards, hackathons, collaboration features, feedback flows, and role-based access experiences.
-
-This repository contains the frontend and serverless API helpers under `api/`.
-The Spring Boot backend is maintained in a separate repository.
-
-- Frontend repo: https://github.com/SandeepVashishtha/Eventra
-- Backend repo: https://github.com/SandeepVashishtha/Eventra-Backend
-- Backend API base: https://eventra-backend-springboot-eybhdvaubxcua7ha.centralindia-01.azurewebsites.net
-- Swagger: https://eventra-backend-springboot-eybhdvaubxcua7ha.centralindia-01.azurewebsites.net/swagger-ui/index.html
 
 ## Key Features
 
-- Event and hackathon discovery, filtering, and registration flows
-- Auth-aware routes with protected pages and role-aware behavior
-- Dashboard and profile surfaces for users and organizers
-- Real-time and offline-friendly UX utilities
-- Feedback, recommendation, and community engagement modules
-- Extensive utility and behavior test coverage
-
-## Tech Stack
-
-- React 19
-- React Router 7
-- Vite 8
-- Tailwind CSS 4
-- Framer Motion
-- Lucide React
-- Playwright (E2E)
-- ESLint and Prettier
-
-## Project Structure
-
-```text
-Eventra/
-|-- api/                 # Serverless API routes and middleware
-|-- docs/                # Architecture, env setup, onboarding, security docs
-|-- public/              # Static assets
-|-- scripts/             # Validation and automation scripts
-|-- src/
-|   |-- Pages/           # Route-level pages
-|   |-- components/      # Shared and feature components
-|   |-- context/         # React context providers
-|   |-- hooks/           # Custom hooks
-|   |-- utils/           # Utility modules
-|   |-- config/          # Runtime/env config helpers
-|   |-- App.jsx
-|   `-- index.jsx
-|-- tests/               # Node-based unit/integration tests
-|-- vite.config.js
-|-- vercel.json
-`-- README.md
-```
-
-## Prerequisites
-
-- Node.js `>=22.x`
-- npm `>=9.6.4`
-
-## Local Development
-
-1. Clone and install:
-
-```bash
-git clone https://github.com/SandeepVashishtha/Eventra.git
-cd Eventra
-npm install
-```
-
-2. Create your env file:
-
-```bash
-cp .env.example .env
-```
-
-3. Start dev server:
-
-```bash
-npm run dev
-```
-
-App runs at `http://localhost:3000` (configured in `vite.config.js`).
-
-## Environment Variables
-
-Use `.env.example` as the source of truth.
-
-| Variable | Required | Purpose |
-| --- | --- | --- |
-| `REACT_APP_API_URL` | Yes | Backend API base URL used by client requests and SSE streams |
-| `REACT_APP_GITHUB_REPO` | No | Public repo identifier used in metadata |
-| `REACT_APP_PUBLIC_URL` | No | Canonical public app URL |
-| `REACT_APP_VAPID_PUBLIC_KEY` | No | Public web-push key |
-| `REACT_APP_CSP_REPORT_URI` | No | CSP report endpoint |
-| `REACT_APP_SENTRY_DSN` | No | Sentry browser error reporting DSN, used only in production |
-
-Security note: never place private secrets in `REACT_APP_*` or `VITE_*` variables because they are exposed to the client bundle.
-
-## Available Scripts
-
-| Command | Description |
-| --- | --- |
-| `npm run dev` | Start local dev server |
-| `npm run start` | Alias to Vite dev server |
-| `npm run build` | Production build |
-| `npm run preview` | Preview production build locally |
-| `npm run lint` | Run ESLint on `src/` |
-| `npm run lint:fix` | Auto-fix lint issues |
-| `npm run format` | Run Prettier on source files |
-| `npm run test` | Run unit test suite |
-| `npm run test:e2e` | Run Playwright E2E tests |
-| `npm run storybook` | Start Storybook |
-| `npm run build-storybook` | Build Storybook static output |
-
-## Testing and Quality
-
-```bash
-npm run lint
-npm run test
-npm run test:e2e
-```
-
-## SSE Mock Server (Optional)
-
-For local realtime testing:
-
-```bash
-node sse-mock-server.js
-```
-
-Optional environment flags:
-
-- `SSE_MOCK_PORT` (default `4001`)
-- `ALLOWED_ORIGIN` (default `http://localhost:3000`)
-- `SSE_DEBUG` (`true` or `false`)
-
-## Deployment
-
-Vercel configuration is checked in via [`vercel.json`](vercel.json):
-
-- Build command: `npm run lint && GENERATE_SOURCEMAP=false npm run build`
-- Output directory: `build`
-- `/api/*` is rewritten to the hosted Spring Boot backend
-
-## Documentation
-
-- [Architecture and Roles](docs/ARCHITECTURE_AND_ROLES.md)
-- [Environment Setup Guide](docs/ENV_SETUP_GUIDE.md)
-- [Frontend Onboarding](docs/frontend-onboarding.md)
-- [Security Migration Notes](docs/SECURITY_MIGRATION.md)
-- [API Documentation Notes](docs/API_DOCUMENTATION.md)
-
-## Contributing
-
-- Read [CONTRIBUTING.md](CONTRIBUTING.md)
-- Follow [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
-- Open focused pull requests with clear scope and test notes
-- Issues may be auto-unassigned after inactivity by workflow: [auto-unassign-stale-issues.yml](.github/workflows/auto-unassign-stale-issues.yml)
-
-## License
-
-Licensed under Apache 2.0. See [LICENSE](LICENSE).
-
-## Contributors
-
-<p align="left">
-  <a href="https://github.com/SandeepVashishtha/Eventra/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=SandeepVashishtha/Eventra&max=1000" alt="Contributors" />
-  </a>
-</p>
-
-### Maintainers
-
-<table>
-<tr>
-<td align="center">
-<a href="https://github.com/sandeepvashishtha">
-  <img src="https://avatars.githubusercontent.com/u/64915843?v=4" height="140px" width="140px" alt="Sandeep">
-</a><br>
-<sub><b>Sandeep Vashishtha</b><br>
-<a href="https://www.linkedin.com/in/sandeepvashishtha/" target="_blank">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="20" height="20" alt="LinkedIn"/>
-</a>
-</sub>
-</td>
-<td align="center">
-<a href="https://github.com/RhythmPahwa14">
-  <img src="https://avatars.githubusercontent.com/u/170720661?v=4" height="140px" width="140px" alt="Rhythm">
-</a><br>
-<sub><b>Rhythm</b><br>
-<a href="https://www.linkedin.com/in/rhythmpahwa14/" target="_blank">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="20" height="20" alt="LinkedIn"/>
-</a>
-</sub>
-</td>
-</tr>
-</table>
-
-## Star History
-
-<a href="https://www.star-history.com/?repos=sandeepvashishtha%2Feventra&type=date&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=sandeepvashishtha/eventra&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=sandeepvashishtha/eventra&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=sandeepvashishtha/eventra&type=date&legend=top-left" />
- </picture>
-</a>
-
-Built by the Eventra community.
+- **Forest Mint Design System (`#f4fbf7` / `#00b887`)**: Custom aesthetic with dark headers, glassmorphism overlays, subtle micro-animations, and dynamic layout cards.
+- **Global Slide-Over Detail Drawer**: Interactive right-side drawer component powered by React Context (`DrawerContext.jsx`), rendering quick action buttons, detailed agendas, and judging criteria.
+- **Standalone & Drawer Duality**: Seamless transition between slide-over modal previews and full dedicated pages (`/events/[id]`, `/hackathons/[id]`, `/projects/[id]`).
+- **Live Single-Card Step Carousel**: Auto-rotating hero carousel featuring active hackathons and featured community events.
+- **JWT Session Persistence**: Client-side state synchronization with secure localStorage JWT storage (`eventra_token`) and automated user authentication headers.
+- **Personalized User Dashboard (`/dashboard`)**: Full user profile summary, registered events management, upvoted projects tracker, and dynamic profile editing.
 
 ---
 
-## 🧑‍🏫 Mentor
+## Architecture & Visual Diagrams
 
-This project is mentored under **GSSoC'26** by:
+### 1. Frontend System Architecture
 
-<table>
-<tr>
-<td align="center">
-<a href="https://github.com/Ayushh-Sharmaa">
-  <img src="https://avatars.githubusercontent.com/Ayushh-Sharmaa?v=4" height="140px" width="140px" alt="Ayush Sharma" style="border-radius:50%"/>
-</a><br>
-<sub><b>Ayush Sharma</b><br>
-<i>GSSoC'26 Mentor · Eventra</i><br><br>
-<a href="https://github.com/Ayushh-Sharmaa" target="_blank">
-  <img src="https://img.shields.io/badge/GitHub-Ayushh--Sharmaa-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub"/>
-</a>
-&nbsp;
-<a href="https://www.linkedin.com/in/ayushh-sharmaa/" target="_blank">
-  <img src="https://img.shields.io/badge/LinkedIn-ayushh--sharmaa-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn"/>
-</a>
-</sub>
-</td>
-</tr>
-</table>
+```mermaid
+graph TD
+    classDef client fill:#f4fbf7,stroke:#00b887,stroke-width:2px,color:#09382b;
+    classDef page fill:#ffffff,stroke:#00b887,stroke-width:2px,color:#09382b;
+    classDef context fill:#e6f7f0,stroke:#00b887,stroke-width:2px,color:#09382b;
+    classDef backend fill:#0089D6,stroke:#005a9e,stroke-width:2px,color:#ffffff;
 
-> 💬 Have questions about contributing or the project? Reach out to the mentor on [LinkedIn](https://www.linkedin.com/in/ayushh-sharmaa/) or via the [GSSoC Discord](https://discord.gg/6MQ9r5nHT).
+    subgraph ClientBrowser ["Browser UI"]
+        User["User / Developer"]:::client
+    end
+
+    subgraph NextJSApp ["Next.js 16 App Router (src/app)"]
+        RootLayout["Root Layout (layout.jsx)"]:::page
+        LandingPage["Home Landing Page (page.jsx)"]:::page
+        Dashboard["User Dashboard (/dashboard)"]:::page
+        EventsModule["Events Module (/events, /events/[id])"]:::page
+        HackathonsModule["Hackathons Module (/hackathons, /hackathons/[id])"]:::page
+        ProjectsModule["Projects Module (/projects, /projects/[id])"]:::page
+        AuthModule["Auth Pages (/login, /signup)"]:::page
+    end
+
+    subgraph StateManagement ["Application State"]
+        DrawerProvider["Drawer Context Provider (DrawerContext.jsx)"]:::context
+        SlideOverDrawer["Global Detail Drawer (DetailDrawer.jsx)"]:::context
+    end
+
+    subgraph DataLayer ["API Integration Layer"]
+        APIClient["API Client Handler (src/lib/api.js)"]:::context
+        LocalStorage["Browser LocalStorage (JWT Token & Session)"]:::client
+    end
+
+    subgraph RemoteBackend ["Azure Cloud Backend API"]
+        AzureSpring["Azure Spring Boot REST API"]:::backend
+    end
+
+    User --> RootLayout
+    RootLayout --> LandingPage
+    RootLayout --> Dashboard
+    RootLayout --> EventsModule
+    RootLayout --> HackathonsModule
+    RootLayout --> ProjectsModule
+    RootLayout --> AuthModule
+
+    LandingPage --> DrawerProvider
+    EventsModule --> DrawerProvider
+    HackathonsModule --> DrawerProvider
+    ProjectsModule --> DrawerProvider
+    
+    DrawerProvider --> SlideOverDrawer
+    RootLayout --> APIClient
+    APIClient <--> LocalStorage
+    APIClient -->|Bearer JWT HTTP Requests| AzureSpring
+```
+
+---
+
+### 2. Slide-Over Detail Drawer & Navigation Workflow
+
+```mermaid
+flowchart TD
+    classDef action fill:#ffffff,stroke:#00b887,stroke-width:2px,color:#09382b;
+    classDef drawer fill:#f4fbf7,stroke:#00b887,stroke-width:2px,color:#09382b;
+    classDef api fill:#0089D6,stroke:#005a9e,color:#ffffff;
+
+    Start(["User Browses Cards (Events / Hackathons / Projects)"]) --> ClickCard["Click Item Card"]:::action
+    ClickCard --> OpenDrawer["openDrawer(type, item) in DrawerContext"]:::drawer
+    OpenDrawer --> SlideIn["Right-Side Detail Drawer Slides Over Screen"]:::drawer
+
+    SlideIn --> UserAction{Select Action}
+    
+    UserAction -->|Click 'RSVP / Register'| PerformAPI["Call POST /api/{type}/{id}/register"]:::api
+    PerformAPI --> UpdateUI["Show Green Toast / Success Banner"]:::drawer
+    
+    UserAction -->|Click 'Open Full Page'| FullPage["Navigate to Standalone Page (/events/[id])"]:::action
+    
+    UserAction -->|Click Backdrop / Close 'X'| CloseDrawer["closeDrawer() in DrawerContext"]:::drawer
+    CloseDrawer --> End(["Drawer Retracts Smoothly"])
+```
+
+---
+
+### 3. Authentication & Protected API Requests Sequence
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User as Developer / User
+    participant App as Next.js App Router
+    participant Store as Local Storage
+    participant API as API Client (lib/api.js)
+    participant Azure as Azure Spring Boot API
+
+    User->>App: Submits Login Form (/login)
+    App->>API: loginUser(credentials)
+    API->>Azure: POST /api/auth/login
+    
+    alt Login Successful
+        Azure-->>API: 200 OK { token, tokenType: "Bearer", user }
+        API->>Store: Save 'eventra_token' & 'eventra_user'
+        App->>User: Redirect to /dashboard
+        
+        App->>API: fetchUserProfile()
+        API->>Store: Get Bearer Token
+        API->>Azure: GET /api/users/profile (Headers: Authorization: Bearer <token>)
+        Azure-->>API: 200 OK User Profile Data
+        API-->>App: Render Dashboard Details
+    else Login Failed
+        Azure-->>API: 401 Unauthorized / 400 Bad Request
+        API-->>App: Return Error Response
+        App-->>User: Display Toast Error Alert
+    end
+```
+
+---
+
+## Technology Stack
+
+| Category | Technology | Description |
+| :--- | :--- | :--- |
+| **Framework** | Next.js 16 | React framework utilizing App Router & Turbopack |
+| **UI Core** | React 19 & React DOM 19 | Standardized functional components & hooks |
+| **Styling** | Tailwind CSS 4 & PostCSS | Modern utility-first CSS styling engine |
+| **Icons** | Lucide React | Clean, responsive vector icon library |
+| **State Management**| React Context | Global drawer state and overlay management |
+| **API Client** | Native Fetch API (`src/lib/api.js`) | Centralized HTTP wrapper with automatic JWT injection |
+| **Backend Endpoint**| Azure Spring Boot 3 | Hosted cloud REST API service |
+
+---
+
+## Directory Structure
+
+```
+Eventra/
+├── src/
+│   ├── app/
+│   │   ├── dashboard/         # User profile, registered events & activity dashboard
+│   │   ├── events/            # Technical workshops & event listings (+ [id] details)
+│   │   ├── hackathons/        # Global hackathons listing (+ [id] details)
+│   │   ├── projects/          # Open-source projects showcase (+ [id] details)
+│   │   ├── login/             # Login authentication page
+│   │   ├── signup/            # Account registration page
+│   │   ├── globals.css        # Global CSS styles, Tailwind imports & animations
+│   │   ├── layout.jsx         # App shell with Nav, Footer, and DrawerProvider
+│   │   └── page.jsx           # Platform landing page with hero carousel
+│   ├── components/
+│   │   ├── home/              # Carousel, Featured Events, Hero & Workflow
+│   │   └── ui/                # DetailDrawer, EventCard, HackathonCard, ProjectCard
+│   ├── context/
+│   │   └── DrawerContext.jsx  # Context management for slide-over drawer drawer state
+│   └── lib/
+│       └── api.js             # Live API service connector (Azure Spring Boot API)
+├── public/                    # Static images, icons, and assets
+├── jsconfig.json              # Module alias mapping (@/* -> ./src/*)
+├── next.config.ts             # Next.js configuration settings
+├── package.json               # NPM scripts and project dependencies
+└── README.md                  # Frontend documentation
+```
+
+---
+
+## Local Development Setup
+
+### Prerequisites
+
+- **Node.js**: `v18.0.0` or higher
+- **npm**: `v9.0.0` or higher
+
+### Step-by-Step Setup
+
+1. **Navigate to the frontend directory**:
+   ```bash
+   cd Eventra
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
+
+4. **Access the application**:
+   Open [http://localhost:3000](http://localhost:3000) in your web browser.
+
+5. **Build & Test Production Release**:
+   ```bash
+   npm run build
+   npm run start
+   ```
+
+---
+
+## Live API Integration
+
+- **Backend Base URL**: `https://eventra-backend-springboot-eybhdvaubxcua7ha.centralindia-01.azurewebsites.net`
+- **Interactive OpenAPI Specification**: [Swagger UI Documentation](https://eventra-backend-springboot-eybhdvaubxcua7ha.centralindia-01.azurewebsites.net/swagger-ui/index.html)
+
+---
+
+## License
+
+This project is open-source under the [MIT License](LICENSE).
